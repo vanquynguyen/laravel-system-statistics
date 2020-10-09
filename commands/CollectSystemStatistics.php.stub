@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Console\Commands;
+
+use Vanquy\SystemStatistics\ComponentsCollector;
+use Vanquy\SystemStatistics\Models\SystemStatistic;
+use Carbon\Carbon;
+use Illuminate\Console\Command;
+
+class CollectSystemStatistics extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'system-statistics:collect
+        {--date= : Date to collect statistics. Default: Yesterday}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Store record system statistics';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle(Collector $statsCollector)
+    {
+        $dateArg = $this->option('date');
+        $date = $dateArg !== null ? Carbon::createFromFormat('Y-m-d', $dateArg) : Carbon::now()->subDay(1);
+
+        $this->deleteOldStatistics($date);
+        $queries = [];
+        $statistics = $statsCollector->forDate($queries, $date);
+
+        $data = $statistics->map(function ($item, $key) use ($date) {
+            return [
+                'type' => $key,
+                'data' => $item,
+                'date' => $date,
+            ];
+        });
+
+        SystemStatistic::insert($data->toArray());
+    }
+
+    /**
+     * @param Carbon $date
+     */
+    protected function deleteOldStatistics($date)
+    {
+        SystemStatistic::whereDate('date', $date)
+            ->delete();
+    }
+}

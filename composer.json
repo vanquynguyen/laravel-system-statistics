@@ -1,0 +1,41 @@
+{
+    "name": "vanquy/laravel-system-statistics",
+    "description": "A very simple system statistics for project",
+    "type": "library",
+    "keywords": [
+        "vanquy",
+        "user",
+        "system statistics",
+        "laravel"
+    ],
+    "homepage": "https://github.com/vanquynguyen/laravel-system-statistics",
+    "license": "MIT",
+    "authors": [{
+        "name": "Nguyen Van Quy",
+        "email": "vanquynguyen1604@gmail.com",
+        "homepage": "https://viblo.asia/u/ruacondepzaj",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": "^7.2",
+        "illuminate/config": "^6.0 || ^7.0 || ^8.0",
+        "illuminate/database": "^6.0 || ^7.0 || ^8.0",
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Vanquy\\SystemStatistics\\SystemStatisticServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Vanquy\\SystemStatistics\\": "src"
+        }
+    },
+    "prefer-stable": true
+}
