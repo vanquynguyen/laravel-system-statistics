@@ -1,4 +1,5 @@
-# laravel-system-statisticsChúng ta không thể phủ nhận rằng việc thu thập data system statistics là cực kỳ thiết yếu, chính vì vậy hãy làm việc này để giúp sản phẩm, hệ thống của bạn được tốt hơn.
+# laravel-system-statistics
+Chúng ta không thể phủ nhận rằng việc thu thập data system statistics là cực kỳ thiết yếu, chính vì vậy hãy làm việc này để giúp sản phẩm, hệ thống của bạn được tốt hơn.
 Nhận thấy điều này là hữu ích nên mình có dành một chút thời gian và có viết ra một package tạm đặt tên là: ```laravel system statistics```
 
 #### Giới thiệu về package laravel system statistics
